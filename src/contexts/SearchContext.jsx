@@ -1,28 +1,24 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from "react";
 
 export const SearchContext = createContext({});
 
 export default function SearchContextProvider({ children }) {
-  const [searchTerm, setSearchTerm] = useState(' ');
-  const [pokemon, setPokemon] = useState(null);
-
-  const handleChangeOnSearchTerm = (data) => {
-    setSearchTerm(data);
-    console.log(data);
-  };
+  const [pokemons, setPokemon] = useState([]);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}/`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemon(data);
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
-  }, [searchTerm]);
-
+    let pokemonArray = [];
+    for (let i = 1; i < 50; i++) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+        .then((response) => response.json())
+        .then((data) => {
+          pokemonArray.push(data);
+        })
+        .catch((error) => console.log(error));
+    }
+    setPokemon(pokemonArray);
+  }, []);
   return (
-    <SearchContext.Provider value={{ pokemon, handleChangeOnSearchTerm }}>
+    <SearchContext.Provider value={{ pokemons }}>
       {children}
     </SearchContext.Provider>
   );

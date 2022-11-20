@@ -1,12 +1,11 @@
-import Header from '../../components/Header/Header';
-import PokemonBox from '../../components/PokemonBox/PokemonBox';
+import Header from "../../components/Header/Header";
+import Main from "../../components/Main/Main";
 
 export default function Home() {
-  console.log(pokemon);
   return (
     <div>
       <Header />
-      <PokemonBox />
+      <Main />
     </div>
   );
 }
