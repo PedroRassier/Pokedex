@@ -1,13 +1,18 @@
-import { MagnifyingGlass } from "phosphor-react";
-import { useState } from "react";
+import { MagnifyingGlass } from 'phosphor-react';
+import { useContext } from 'react';
+import { useState } from 'react';
+import { SearchContext } from '../../contexts/SearchContext';
 
-import { StyledButton, StyledInput, StyledSearchBar } from "./StyledSearchBar";
+import { StyledButton, StyledInput, StyledSearchBar } from './StyledSearchBar';
 
 export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const { handleChangeOnSearchTerm } = useContext(SearchContext);
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
+    handleChangeOnSearchTerm(searchTerm);
   };
   const handleSubmit = (e) => {
     e.preventDefault();

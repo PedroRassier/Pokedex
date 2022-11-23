@@ -1,11 +1,13 @@
-import { StyledPokemonBox } from "./StyledPokemonBox";
+import { StyledPokemonBox } from './StyledPokemonBox';
 
 export default function PokemonBox(props) {
   return (
-    <StyledPokemonBox>
+    <StyledPokemonBox pokemonTypes={props.pokemonType}>
       <img src={props.pokemonImage} alt="pokemon-image" />
-      <h2>{props.pokemonName}</h2>
-      <p pokemontype={props.pokemonType}>{props.pokemonType}</p>
+      <div id="boxBody">
+        <h2>{props.pokemonName}</h2>
+        <p>{props.pokemonType}</p>
+      </div>
     </StyledPokemonBox>
   );
 }
