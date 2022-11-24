@@ -10,7 +10,7 @@ import styled from 'styled-components';
  props.pokemonTypes == 'ground' ? '#bc8602' : '#ffffff'
  props.pokemonTypes == 'psychic' ? '#685c68' : '#ffffff
  props.pokemonTypes == 'fighting' ? '#ff2336' : '#fffff
-  props.pokemonTypes == 'rock' ? '#bbb295' : '#ffffff'}
+ props.pokemonTypes == 'rock' ? '#bbb295' : '#ffffff'}
  props.pokemonTypes == 'eletric' ? '#fdef19' : '#ffffff
  props.pokemonTypes == 'ice' ? '#c3e8de' : '#ffffff'};
 
