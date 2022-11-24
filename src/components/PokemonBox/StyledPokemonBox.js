@@ -1,22 +1,4 @@
 import styled from 'styled-components';
-/* 
- props.pokemonTypes == 'grass' ? '#8fce00' : '#ffffff'};
- props.pokemonTypes == 'fire' ? '#fa7445' : '#ffffff'};
- props.pokemonTypes == 'poison' ? '#ab0068' : '#ffffff'
- props.pokemonTypes == 'water' ? '#2ad3ff' : '#ffffff'}
- props.pokemonTypes == 'bug' ? '#75ff7e' : '#ffffff'};
-
- props.pokemonTypes == 'normal' ? '#ffffff' : '#ffffff'
- props.pokemonTypes == 'ground' ? '#bc8602' : '#ffffff'
- props.pokemonTypes == 'psychic' ? '#685c68' : '#ffffff
- props.pokemonTypes == 'fighting' ? '#ff2336' : '#fffff
- props.pokemonTypes == 'rock' ? '#bbb295' : '#ffffff'}
- props.pokemonTypes == 'eletric' ? '#fdef19' : '#ffffff
- props.pokemonTypes == 'ice' ? '#c3e8de' : '#ffffff'};
-
- props.pokemonTypes == 'fairy' ? '#ff92f6' : '#ffffff'}
- props.pokemonTypes == 'dark' ? '#833a00' : '#ffffff'};
-*/
 
 export const StyledPokemonBox = styled.div`
   img {
@@ -45,8 +27,8 @@ export const StyledPokemonBox = styled.div`
   padding: 1rem;
   width: 18rem;
   height: 22rem;
-  background-color: #dddddd;
-  border-radius: 5px;
+  background-color: #ececec;
+  border-radius: 10%;
 
   p {
     border-radius: 20%;

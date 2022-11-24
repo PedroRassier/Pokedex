@@ -6,6 +6,13 @@ export const StyledSearchBar = styled.form`
   height: 2.5rem;
   background-color: #ffffff;
   border-radius: 5px;
+
+  @media only screen and (max-width: 600px) {
+    width: 20rem;
+  }
+  @media only screen and (max-width: 440px) {
+    width: 15rem;
+  }
 `;
 export const StyledInput = styled.input`
   border-radius: 5px;
@@ -14,13 +21,4 @@ export const StyledInput = styled.input`
   width: 90%;
   height: 100%;
   border: 0;
-`;
-export const StyledButton = styled.button`
-  display: grid;
-  place-items: center;
-  height: 100%;
-  width: 10%;
-  background: none;
-  border: 0;
-  border-radius: 5px;
 `;

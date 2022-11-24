@@ -7,4 +7,8 @@ export const StyledHeader = styled.header`
   align-items: center;
   justify-content: center;
   background-color: #670cee;
+
+  @media only screen and (max-width: 600px) {
+    height: 6rem;
+  }
 `;
