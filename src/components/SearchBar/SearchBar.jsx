@@ -20,6 +20,7 @@ export default function SearchBar() {
   return (
     <StyledSearchBar onSubmit={handleSubmit}>
       <StyledInput
+        placeholder="Search"
         onChange={handleInputChange}
         value={searchTerm}
         spellCheck="false"

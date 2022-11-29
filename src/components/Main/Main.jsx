@@ -2,15 +2,13 @@ import { useContext } from "react";
 import PokemonBox from "../PokemonBox/PokemonBox";
 import { SearchContext } from "../../contexts/SearchContext";
 import { GetPokemonContext } from "../../contexts/GetPokemonContext";
-
 import { StyledMain } from "./StyledMain";
 import Loading from "../Loading/Loading";
+import SearchAdvice from "../SearchAdvice/SearchAdvice";
 
 export default function Main() {
   const { pokemons, dataLoaded } = useContext(GetPokemonContext);
-  const { searchTerm, searchPokemon } = useContext(SearchContext);
-
-  console.log(searchPokemon);
+  const { searchTerm, searchPokemon, fetchSuccess } = useContext(SearchContext);
 
   const showComponents = () => {
     if (searchTerm === "") {
@@ -22,7 +20,8 @@ export default function Main() {
           pokemonType={pokemon.types[0].type.name}
         />
       ));
-    } else {
+    }
+    if (fetchSuccess === true) {
       return (
         <PokemonBox
           key={searchPokemon?.id}
@@ -33,6 +32,16 @@ export default function Main() {
       );
     }
   };
+  let searchInfo;
+  fetchSuccess === true
+    ? (searchInfo =
+        "If you want to search a pokemon that is not in the list, search for the full pokemon's name")
+    : (searchInfo = "Ops, no results found");
 
-  return <StyledMain>{dataLoaded ? showComponents() : <Loading />}</StyledMain>;
+  return (
+    <StyledMain>
+      <SearchAdvice searchInfo={searchInfo} />
+      {dataLoaded ? showComponents() : <Loading />}
+    </StyledMain>
+  );
 }
