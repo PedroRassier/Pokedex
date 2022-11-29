@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledPokemonBox = styled.div`
   img {
@@ -25,7 +25,7 @@ export const StyledPokemonBox = styled.div`
     font-size: 24px;
   }
   padding: 1rem;
-  width: 18rem;
+  width: 17rem;
   height: 22rem;
   background-color: #ececec;
   border-radius: 10%;

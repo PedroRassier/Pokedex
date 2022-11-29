@@ -1,32 +1,29 @@
-import { createContext, useEffect, useState } from 'react';
+import { useEffect } from "react";
+import { useState } from "react";
+import { createContext } from "react";
 
-export const SearchContext = createContext({});
+export const SearchContext = createContext();
 
 export default function SearchContextProvider({ children }) {
-  const [pokemons, setPokemons] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchPokemon, setSearchPokemon] = useState(null);
+
+  useEffect(() => {
+    if (searchTerm) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`)
+        .then((response) => response.json())
+        .then((data) => setSearchPokemon(data));
+      console.log(searchPokemon);
+    }
+  }, [searchTerm]);
 
   const handleChangeOnSearchTerm = (data) => {
     setSearchTerm(data);
   };
 
-  useEffect(() => {
-    const getPokemonData = async () => {
-      let pokemonArray = [];
-      for (let i = 1; i < 300; i++) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-        const data = await response.json();
-        pokemonArray.push(data);
-      }
-      setPokemons(pokemonArray);
-      setDataLoaded(true);
-    };
-    getPokemonData();
-  }, []);
   return (
     <SearchContext.Provider
-      value={{ pokemons, handleChangeOnSearchTerm, searchTerm, dataLoaded }}
+      value={{ searchTerm, handleChangeOnSearchTerm, searchPokemon }}
     >
       {children}
     </SearchContext.Provider>
