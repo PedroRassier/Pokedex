@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+const pokemonsTypesColor = {
+  grass: '#8fce00',
+  fire: '#fa7445',
+  poison: '#ab0068',
+  water: '#2ad3ff',
+  bug: '#75ff7e',
+  normal: '#ffffff',
+  ground: '#bc8602',
+  psychic: '#685c68',
+  fighting: '#ff2336',
+  rock: '#bbb295',
+  eletric: '#fdef19',
+  ice: '#c3e8de',
+  fairy: '#ff92f6',
+  dark: '#833a00',
+};
+
 export const StyledPokemonBox = styled.div`
   img {
     position: relative;
@@ -27,11 +44,12 @@ export const StyledPokemonBox = styled.div`
   padding: 1rem;
   width: 18rem;
   height: 22rem;
-  background-color: #ececec;
+  background-color: #dddddd;
   border-radius: 10%;
 
   p {
     border-radius: 20%;
     padding: 0.3rem;
+    background-color: ${(props) => pokemonsTypesColor[props.pokemonType]};
   }
 `;
