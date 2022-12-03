@@ -24,17 +24,6 @@ export default function GetPokemonContextProvider({ children }) {
   useEffect(() => {
     const getPokemonByLimit = async () => {
       let limitPokemons = [];
-      /*fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offSet}`)
-        .then((response) => response.json())
-        .then((data) => {
-          for (let i = 0; i < 20; i++) {
-            let url = data.results[i].url;
-            console.log(url);
-            fetch(url)
-              .then((response) => response.json())
-              .then((data) => limitPokemons.push(data));
-          }
-        });*/
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offSet}`
       );
