@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { createContext } from "react";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { createContext } from 'react';
 
 export const SearchContext = createContext();
 
 export default function SearchContextProvider({ children }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [searchPokemon, setSearchPokemon] = useState(null);
   const [fetchSuccess, setFetchSuccess] = useState(true);
 
@@ -23,7 +23,7 @@ export default function SearchContextProvider({ children }) {
   }, [searchTerm]);
 
   const handleChangeOnSearchTerm = (data) => {
-    if (searchTerm === "") {
+    if (searchTerm === '') {
       setSearchPokemon(null);
     }
     setSearchTerm(data);

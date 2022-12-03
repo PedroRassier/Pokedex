@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import PokemonBox from "../PokemonBox/PokemonBox";
-import { SearchContext } from "../../contexts/SearchContext";
-import { GetPokemonContext } from "../../contexts/GetPokemonContext";
-import { StyledMain } from "./StyledMain";
-import Loading from "../Loading/Loading";
-import SearchAdvice from "../SearchAdvice/SearchAdvice";
+import { useContext } from 'react';
+import PokemonBox from '../PokemonBox/PokemonBox';
+import { SearchContext } from '../../contexts/SearchContext';
+import { GetPokemonContext } from '../../contexts/GetPokemonContext';
+import { StyledMain } from './StyledMain';
+import Loading from '../Loading/Loading';
+import SearchAdvice from '../SearchAdvice/SearchAdvice';
 
 export default function Main() {
   const { pokemons, dataLoaded } = useContext(GetPokemonContext);
   const { searchTerm, searchPokemon, fetchSuccess } = useContext(SearchContext);
-
+  console.log(pokemons);
   const showComponents = () => {
-    if (searchTerm === "") {
+    if (searchTerm === '') {
       return pokemons.map((pokemon) => (
         <PokemonBox
           key={pokemon.id}
@@ -36,7 +36,7 @@ export default function Main() {
   fetchSuccess === true
     ? (searchInfo =
         "If you want to search a pokemon that is not in the list, search for the full pokemon's name")
-    : (searchInfo = "Ops, no results found");
+    : (searchInfo = 'Ops, no results found');
 
   return (
     <StyledMain>

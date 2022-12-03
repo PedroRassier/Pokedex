@@ -1,23 +1,31 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from 'react';
 
 export const GetPokemonContext = createContext({});
 
 export default function GetPokemonContextProvider({ children }) {
   const [pokemons, setPokemons] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [offSet, setOffSet] = useState(0);
 
   useEffect(() => {
-    const getPokemonData = async () => {
-      let pokemonArray = [];
-      for (let i = 1; i < 25; i++) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-        const data = await response.json();
-        pokemonArray.push(data);
-      }
-      setPokemons(pokemonArray);
-      setDataLoaded(true);
+    const getPokemonByLimit = async () => {
+      let limitPokemons = [];
+      await fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offSet}`)
+        .then((response) => response.json())
+        .then((data) => {
+          for (let i = 0; i < 20; i++) {
+            let url = data.results[i].url;
+            console.log(url);
+            fetch(url)
+              .then((response) => response.json())
+              .then((data) => limitPokemons.push(data));
+          }
+          setDataLoaded(true);
+          setPokemons(limitPokemons);
+          console.log(pokemons);
+        });
     };
-    getPokemonData();
+    getPokemonByLimit();
   }, []);
   return (
     <GetPokemonContext.Provider value={{ pokemons, dataLoaded }}>
