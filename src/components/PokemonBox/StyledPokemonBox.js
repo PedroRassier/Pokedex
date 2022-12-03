@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const pokemonsTypesColor = {
   grass: '#8fce00',
@@ -42,7 +42,7 @@ export const StyledPokemonBox = styled.div`
     font-size: 24px;
   }
   padding: 1rem;
-  width: 18rem;
+  width: 17rem;
   height: 22rem;
   background-color: #dddddd;
   border-radius: 10%;

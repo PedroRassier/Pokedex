@@ -1,8 +1,8 @@
-import { StyledPokemonBox } from './StyledPokemonBox';
+import { StyledPokemonBox } from "./StyledPokemonBox";
 
 export default function PokemonBox(props) {
   return (
-    <StyledPokemonBox pokemonTypes={props.pokemonType}>
+    <StyledPokemonBox pokemonTypes={props.pokemonType} onClick={props.onClick}>
       <img src={props.pokemonImage} alt="pokemon-image" />
       <div id="boxBody">
         <h2>{props.pokemonName}</h2>

@@ -1,14 +1,17 @@
-import { useContext } from 'react';
-import PokemonBox from '../PokemonBox/PokemonBox';
-import { SearchContext } from '../../contexts/SearchContext';
-import { StyledMain } from './StyledMain';
-import Loading from '../Loading/Loading';
+import { useContext } from "react";
+import PokemonBox from "../PokemonBox/PokemonBox";
+import { SearchContext } from "../../contexts/SearchContext";
+import { GetPokemonContext } from "../../contexts/GetPokemonContext";
+import { StyledMain } from "./StyledMain";
+import Loading from "../Loading/Loading";
+import SearchAdvice from "../SearchAdvice/SearchAdvice";
 
 export default function Main() {
-  const { pokemons, searchTerm, dataLoaded } = useContext(SearchContext);
+  const { pokemons, dataLoaded } = useContext(GetPokemonContext);
+  const { searchTerm, searchPokemon, fetchSuccess } = useContext(SearchContext);
 
   const showComponents = () => {
-    if (searchTerm === '') {
+    if (searchTerm === "") {
       return pokemons.map((pokemon) => (
         <PokemonBox
           key={pokemon.id}
@@ -17,19 +20,28 @@ export default function Main() {
           pokemonType={pokemon.types[0].type.name}
         />
       ));
-    } else {
-      return pokemons
-        .filter((pokemon) => pokemon.name.includes(searchTerm))
-        .map((pokemon) => (
-          <PokemonBox
-            key={pokemon.id}
-            pokemonName={pokemon.name}
-            pokemonImage={pokemon.sprites.front_default}
-            pokemonType={pokemon.types[0].type.name}
-          />
-        ));
+    }
+    if (fetchSuccess === true) {
+      return (
+        <PokemonBox
+          key={searchPokemon?.id}
+          pokemonName={searchPokemon?.name}
+          pokemonImage={searchPokemon?.sprites.front_default}
+          pokemonType={searchPokemon?.types[0].type.name}
+        />
+      );
     }
   };
+  let searchInfo;
+  fetchSuccess === true
+    ? (searchInfo =
+        "If you want to search a pokemon that is not in the list, search for the full pokemon's name")
+    : (searchInfo = "Ops, no results found");
 
-  return <StyledMain>{dataLoaded ? showComponents() : <Loading />}</StyledMain>;
+  return (
+    <StyledMain>
+      <SearchAdvice searchInfo={searchInfo} />
+      {dataLoaded ? showComponents() : <Loading />}
+    </StyledMain>
+  );
 }

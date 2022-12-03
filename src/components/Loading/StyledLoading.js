@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledLoading = styled.div`
   position: absolute;
-  left: 45%;
+  left: 50%;
+  right: auto;
   top: 50%;
   font-size: 60px;
 
