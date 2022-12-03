@@ -5,11 +5,12 @@ import { GetPokemonContext } from '../../contexts/GetPokemonContext';
 import { StyledMain } from './StyledMain';
 import Loading from '../Loading/Loading';
 import SearchAdvice from '../SearchAdvice/SearchAdvice';
+import Pagination from '../PaginationButtons/Pagination';
 
 export default function Main() {
-  const { pokemons, dataLoaded } = useContext(GetPokemonContext);
+  const { pokemons, dataLoaded, nextPage, previousPage } =
+    useContext(GetPokemonContext);
   const { searchTerm, searchPokemon, fetchSuccess } = useContext(SearchContext);
-  console.log(pokemons);
   const showComponents = () => {
     if (searchTerm === '') {
       return pokemons.map((pokemon) => (
@@ -42,6 +43,7 @@ export default function Main() {
     <StyledMain>
       <SearchAdvice searchInfo={searchInfo} />
       {dataLoaded ? showComponents() : <Loading />}
+      <Pagination nextPage={nextPage} previousPage={previousPage} />
     </StyledMain>
   );
 }
