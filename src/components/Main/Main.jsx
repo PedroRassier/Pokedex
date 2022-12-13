@@ -10,10 +10,12 @@ import Pagination from '../PaginationButtons/Pagination';
 export default function Main() {
   const { pokemons, dataLoaded, nextPage, previousPage } =
     useContext(GetPokemonContext);
+
   const { searchTerm, searchPokemon, fetchSuccess } = useContext(SearchContext);
+
   const showComponents = () => {
     if (searchTerm === '') {
-      return pokemons.map((pokemon) => (
+      return pokemons?.map((pokemon) => (
         <PokemonBox
           key={pokemon.id}
           pokemonName={pokemon.name}
@@ -22,6 +24,7 @@ export default function Main() {
         />
       ));
     }
+
     if (fetchSuccess === true) {
       return (
         <PokemonBox
@@ -33,11 +36,10 @@ export default function Main() {
       );
     }
   };
-  let searchInfo;
-  fetchSuccess === true
-    ? (searchInfo =
-        "If you want to search a pokemon that is not in the list, search for the full pokemon's name")
-    : (searchInfo = 'Ops, no results found');
+
+  const searchInfo = fetchSuccess === true
+    ? "If you want to search a pokemon that is not in the list, search for the full pokemon's name" 
+    : 'Ops, no results found';
 
   return (
     <StyledMain>

@@ -18,7 +18,6 @@ export default function SearchContextProvider({ children }) {
           setFetchSuccess(true);
         })
         .catch(() => setFetchSuccess(false));
-      console.log(searchPokemon);
     }
   }, [searchTerm]);
 
